@@ -5,7 +5,7 @@ describe('Passenger', () => {
     test('check bags', () => {
         expect(jim.bags[0].weight).toEqual(15)
     })
-    // test('check name error', () => {
-    //     expect(new Passenger()).toThrowError('name required')
-    // })
+    test('check name error', () => {
+        expect(() => new Passenger()).toThrowError('name is required')
+    })
 })

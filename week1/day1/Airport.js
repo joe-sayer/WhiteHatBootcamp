@@ -5,6 +5,11 @@ const { Plane } = require('./Plane')
 
 
 class Airport {
+    /**
+     * Represents a Airport.
+     * @constructor
+     * @param {string} name - The name of the airport.
+     */
     constructor(name) {
         if(!name) {
             throw new Error('name required')
@@ -12,7 +17,7 @@ class Airport {
         this.name = name
         this.planes = []
     }
-
+    /** This function adds a plane currently at the airport.  */
     addPlane(plane) {
         this.planes.push(plane)
     }
