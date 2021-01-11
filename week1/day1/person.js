@@ -23,7 +23,7 @@ const duke = {
 }
 
 const charles = {
-    name: 'philip',
+    name: 'Charles',
     parents: [queen, duke],
     childOf: childOf
 }

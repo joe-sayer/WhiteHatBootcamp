@@ -1,3 +1,4 @@
+const { test, expect } = require('@jest/globals');
 const { william, charles, queen, duke, camila } = require('./person')
 
 describe('person', () => {
@@ -6,5 +7,8 @@ describe('person', () => {
     });
     test('check parents', () => {
         expect(charles.parents).toEqual([queen, duke])
+    })
+    test('check childOf', () => {
+        expect(william.childOf()).toEqual('Charles & Diana')
     })
 });
