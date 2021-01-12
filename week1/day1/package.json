@@ -4,7 +4,8 @@
   "description": "",
   "main": "script.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "test:report": "jest --coverage=true"
   },
   "author": "Joe Sayer",
   "license": "ISC",
