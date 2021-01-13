@@ -1,30 +1,26 @@
 const { Bag } = require('./Bag')
 const { Person } = require('./Person')
 
-/**
- * @module Passenger
- */
+/** Represents a Passenger */
 
 class Passenger extends Person {
     /**
-     * Represents a Passenger.
      * @constructor
-     * @param {string} name - The first and last name of the passenger.
+     * @param {string} name - The first and last name of the passenger (required).
+     * @param {int} bag - The weight of an initial bag.
+     * @param {string} ticketNumber - Passenger ticket number (required).
      */
     constructor(name, bag, ticketNumber) {
         super(name, bag)
+        if(!ticketNumber) {
+            throw new Error('ticket required')
+        }
         this.ticketNumber = ticketNumber
-    }
-    /** This function adds a new bag to the luggage of the passenger 
-    * @param {int} weight - Weight of the bag.
-    */
-    addBag(weight) {
-        let newBag = new Bag(weight)
-        this.bags.push(newBag)
     }
 }
 
-const jim = new Passenger('Jim Smith')
-jim.addBag(15)
+const jim = new Passenger('Jim Smith', 1, '12345')
+jim.addLuggage(15, 25)
+console.log(jim.bags)
 
 module.exports = {Passenger, jim}

@@ -4,12 +4,10 @@ const { Plane } = require('./Plane')
 const fs = require('fs')
 const data = require('./airports.json');
 
-/**
- * @module Airport
- */
+/** Represents an Airport  */
 class Airport {
     /**
-     * Represents a Airport.
+     * Constructor for class.
      * @constructor
      * @param {string} name - The name of the airport.
      */
@@ -47,8 +45,8 @@ const barcelona = new Airport('Barcelona')
 const testPlane = new Plane('Heathrow', 'HEA001')
 
 barcelona.addPlane(testPlane)
-testPlane.boardPassenger('John Doe')
-testPlane.passengers[0].bags.push(new Bag(15))
+testPlane.addPassenger('John Doe')
+testPlane.passengers[0].bags.push(new Bag(15)) //addLuggage?
 
 barcelona.getInfo()
 

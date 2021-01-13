@@ -1,10 +1,8 @@
-/**
- * @module Bag
- */
+/** Represents an Bag  */
 
 class Bag {
     /**
-     * Represents a bag.
+     * Constructor for Bag.
      * @constructor
      * @param {int} weight - The weight of the bag (required).
      */

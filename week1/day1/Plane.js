@@ -2,18 +2,16 @@ const { builtinModules } = require('module')
 const { Passenger } = require('./Passenger')
 const { Crew } = require('./Crew')
 
-/**
- * @module Plane
- */
+/** Represents a plane  */
 
 class Plane {
     /**
-     * Represents a Plane.
      * @constructor
      * @param {string} destination - The destination of the flight.
      * @param {string} flightId - The flight ID of the flight.
      */
     constructor(destination, flightId) {
+        // make required
         this.destination = destination
         this.flightId = flightId
         this.usingFlight = []
@@ -46,5 +44,7 @@ class Plane {
         })
     }
 }
+
+const plane1 = new Plane('Heathrow', 'HEA001')
 
 module.exports = {Plane, plane1}
