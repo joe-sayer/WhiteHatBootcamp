@@ -1,0 +1,28 @@
+@startuml
+
+' For use with PlantUML 
+
+title Electric Scooter Hire assignment - Sequence Diagram
+
+actor User
+participant HireShop
+participant ChargingStation
+
+User -[#red]> HireShop: request Scooter
+HireShop -[#red]> HireShop: check scooterInventory
+HireShop -[#red]> HireShop: check scooter battery isCharged
+HireShop --[#red]> User: lendScooter()
+
+
+User -> User: useScooter()
+
+User -> ChargingStation : chargeBattery(scooter)
+ChargingStation -> ChargingStation: charge specified scooter battery
+ChargingStation --> User: return scooter for use
+
+
+User -[#blue]> HireShop: return scooter
+HireShop -[#blue]> HireShop: receiveScooter()
+HireShop -[#blue]> ChargingStation: chargeBattery(scooter)
+
+@enduml

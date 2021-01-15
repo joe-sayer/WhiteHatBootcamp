@@ -1,0 +1,9 @@
+@startuml
+left to right direction
+actor "User" as user
+rectangle ElectricScooterHireSystem {
+  usecase "useScooter()" as UC1
+}
+user --> UC1
+
+@enduml

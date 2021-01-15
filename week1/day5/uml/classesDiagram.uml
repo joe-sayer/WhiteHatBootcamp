@@ -1,0 +1,44 @@
+@startuml
+
+' For use with PlantUML 
+
+title Electric Scooter Hire assignment - Class Diagram
+
+class Battery {
+    int capacity
+    int currentCharge
+    boolean isEmpty
+    void useBattery(amount)
+    void showInfo()
+}
+
+class Scooter {
+    int id
+    void showInfo()
+}
+
+class User {
+    string name
+    void useScooter()
+}
+
+class HireShop {
+    array scooterInventory
+    void createScooter()
+    void checkScooterBatteryCharge()
+    void lendScooter()
+    void receiveScooter()
+}
+
+class ChargingStation {
+    void chargeBattery(scooter)
+}
+
+Scooter *-- Battery : 1
+HireShop <-- ChargingStation : 1
+User <-- Scooter: hires
+HireShop <-- User : hire scooter
+ChargingStation <-- Scooter : charges battery
+ChargingStation <-- User : charges own scooter battery
+
+@enduml

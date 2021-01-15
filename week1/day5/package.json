@@ -1,0 +1,15 @@
+{
+  "name": "scooter-hire",
+  "version": "1.0.0",
+  "description": "Electric Scooter hire system assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "test:report": "jest --coverage=true"
+  },
+  "author": "Joe Sayer",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^26.6.3"
+  }
+}
