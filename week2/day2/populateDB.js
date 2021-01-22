@@ -17,12 +17,12 @@ populateData = data => {
             for(let j = 0; j < data[i].menus.length; j++) { // loop through ith restaurant menus
                 db.run(`INSERT INTO menus (name) VALUES (?);`,
                 data[i].menus[j].title
-                )
-                for(let k = 0; k < data[i].menus[j].items.length; k++) {
+                ) // insert menu names into menus table
+                for(let k = 0; k < data[i].menus[j].items.length; k++) { // loop through jth menu items
                     db.run(`INSERT INTO menuitems (name, price) VALUES (?,?);`,
                     data[i].menus[j].items[k].name,
                     data[i].menus[j].items[k].price
-                    )
+                    ) // insert menu items into menuitems table
                 }
             }
         }
