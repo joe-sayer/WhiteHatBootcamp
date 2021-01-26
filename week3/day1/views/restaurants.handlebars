@@ -1,0 +1,54 @@
+<style type="text/css">
+    @media screen and (max-width: 1000px) {
+        .menu-container {
+            flex-direction: column;
+        }
+    }
+
+    * {
+        font-family: Arial;
+        color: #DE354C;
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    .menu-container {
+        display: flex;
+        flex-wrap: wrap;
+        width: 900px;
+        margin: 0 auto;
+    }
+
+    .restaurant {
+        margin: 75px auto;
+        text-align: center;
+        padding: 5px;
+        display: inline-block;
+        border: 3px solid #932432;
+        box-shadow: 5px 5px 5px grey;
+        border-radius: 15px;
+    }
+
+    .restaurant:hover {
+        transform: scale(1.1);
+        transition-duration: 0.5s;
+    }
+
+    .restaurant img {
+        max-width: 250px;
+    }
+</style>
+
+
+<h1>Restaurants</h1>
+<div class="menu-container">
+    {{#each restaurants}}
+        <div class="restaurant">
+            <h2>{{this.name}}</h2>
+            <h4>{{this.menus.length}} menus</h4>
+            <img src="{{this.image}}" alt="">
+        </div>
+    {{/each}}
+</div>
