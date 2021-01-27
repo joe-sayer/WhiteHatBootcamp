@@ -2,15 +2,39 @@
     @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
     * {
         font-family: Quicksand;
+        background: #12232E;
+        color: white;
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    .container {
+        margin: 0 auto;
+        width: 800px;
+        text-align: center;
+    }
+
+    .container ul {
+        margin: 0 auto;
+        width: 350px;
+    }
+
+    .container li {
+        margin: 15px;
     }
 </style>
 
-<h1>{{this.restaurant.name}}</h1>
-{{#each this.menus}}
-    <h3>{{this.title}}</h3>
-    <ul>
-        {{#each this.items}}
-        <li>{{this.name}} - {{this.price}}</li>
-        {{/each}}
-    </ul>
-{{/each}}
+<div class="container">
+    <h1>{{this.restaurant.name}}</h1>
+    <img src="{{this.restaurant.image}}" alt="">
+    {{#each this.menus}}
+        <h2>{{this.title}}</h2>
+        <ul>
+            {{#each this.items}}
+            <li>{{this.name}} - {{this.price}}</li>
+            {{/each}}
+        </ul>
+    {{/each}}
+</div>
