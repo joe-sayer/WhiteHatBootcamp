@@ -1,4 +1,6 @@
 <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+
     @media screen and (max-width: 1000px) {
         .menu-container {
             flex-direction: column;
@@ -6,12 +8,22 @@
     }
 
     * {
-        font-family: Arial;
-        color: #DE354C;
+        font-family: Quicksand;
+        background: #12232E;
+        color: white;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+
+    li {
+        text-align: left;
     }
 
     h1 {
         text-align: center;
+        margin-bottom: -25px;
     }
 
     .menu-container {
@@ -24,10 +36,10 @@
     .restaurant {
         margin: 75px auto;
         text-align: center;
-        padding: 5px;
+        padding: 15px;
         display: inline-block;
-        border: 3px solid #932432;
-        box-shadow: 5px 5px 5px grey;
+        border: 2px solid #4DA8DA;
+        box-shadow: 5px 5px 5px #203647;
         border-radius: 15px;
     }
 
@@ -46,9 +58,18 @@
 <div class="menu-container">
     {{#each restaurants}}
         <div class="restaurant">
+            <a href="/restaurants/{{this.id}}">
             <h2>{{this.name}}</h2>
-            <h4>{{this.menus.length}} menus</h4>
             <img src="{{this.image}}" alt="">
+            {{#each this.menus}}
+                <h2>{{this.title}}</h2>
+                <ul>
+                    {{#each this.items}}
+                    <li>{{this.name}} - £{{this.price}}</li>
+                    {{/each}}
+                </ul>
+            {{/each}}
+            </a>
         </div>
     {{/each}}
 </div>
