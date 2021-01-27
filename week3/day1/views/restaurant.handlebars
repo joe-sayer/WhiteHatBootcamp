@@ -5,6 +5,11 @@
         background: #12232E;
         color: white;
     }
+    
+    a {
+        display: block;
+        margin-bottom: 20px;
+    }
 
     img {
         max-width: 100%;
@@ -28,6 +33,7 @@
 
 <div class="container">
     <h1>{{this.restaurant.name}}</h1>
+    <a href="/">HOME</a>
     <img src="{{this.restaurant.image}}" alt="">
     {{#each this.menus}}
         <h2>{{this.title}}</h2>
