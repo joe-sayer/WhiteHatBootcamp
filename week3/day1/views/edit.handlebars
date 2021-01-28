@@ -1,0 +1,19 @@
+<style>
+    * {
+        width: 300px;
+        margin: 0 auto;
+    }
+
+    img {
+        max-width: 300px
+    }
+</style>
+
+<h1>{{this.restaurant.name}}</h1>
+<img src="{{this.restaurant.image}}" alt="{{this.restaurant.name}}">
+
+<form action="/restaurants/{{this.restaurant.id}}/edit" method="POST">
+    <input type="text" name="name" placeholder="Name">
+    <input type="text" name="image" placeholder="URL">
+    <input type="submit">
+</form>

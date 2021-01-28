@@ -16,6 +16,10 @@ const handlebars = expressHandlebars({
 app.engine('handlebars', handlebars)
 app.set('view engine', 'handlebars')
 
+// read data as if it is JSON
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+
 
 // root restaurants page
 app.get('/', async (req, res) => {
@@ -55,6 +59,39 @@ app.get('/about', (req, res) => {
     })
 })
 
+app.get('/new', (req, res) => {
+    res.render('new')
+})
+
+// create new restaurant from new restaurant page
+app.post('/restaurants', async (req, res) => {
+    console.log(req.body)
+    Restaurant.create(req.body)
+    res.redirect('/')
+})
+
+// serve edit page
+app.get('/restaurants/:id/edit', async (req, res) => {
+    Restaurant.findByPk(req.params.id).then(restaurant => {
+        res.render('edit', {restaurant})
+    })
+})
+
+// handling edit
+app.post('/restaurants/:id/edit', async (req, res) => {
+    Restaurant.findByPk(req.params.id).then(restaurant => {
+        restaurant.update(req.body)
+        res.redirect(`/restaurants/${restaurant.id}`)
+    })
+})
+
+// delete restaurant
+app.get('/restaurants/:id/delete', async (req, res) => {
+    await Restaurant.findByPk(req.params.id).then(restaurant => {
+        restaurant.destroy()
+        res.redirect('/')
+    })
+})  
 
 // listen on port 3000
 app.listen(port, () => {

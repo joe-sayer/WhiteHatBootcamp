@@ -34,7 +34,9 @@
 <div class="container">
     <h1>{{this.restaurant.name}}</h1>
     <a href="/">HOME</a>
-    <img src="{{this.restaurant.image}}" alt="">
+    <a href="/restaurants/{{this.restaurant.id}}/edit"><strong>Edit</strong> this restaurant</a>
+    <a href="/restaurants/{{this.restaurant.id}}/delete"><strong>Delete</strong> this restaurant</a>
+    <img src="{{this.restaurant.image}}" alt="{{this.restaurant.name}}">
     {{#each this.menus}}
         <h2>{{this.title}}</h2>
         <ul>
