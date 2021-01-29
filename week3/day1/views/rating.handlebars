@@ -1,0 +1,16 @@
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+    * {
+        font-family: Quicksand;
+        background: #12232E;
+        color: white;
+    }
+</style>
+
+<h1>{{this.restaurant.name}}</h1>
+<img src="{{this.restaurant.image}}" alt="{{this.restaurant.name}}">
+
+<form action="/restaurants/{{this.restaurant.id}}/rating" method="POST">
+    <input type="number" name="rating" min="1" max="5">
+    <input type="submit">
+</form>

@@ -5,6 +5,7 @@ const {allowInsecurePrototypeAccess} = require('@handlebars/allow-prototype-acce
 const {Restaurant} = require('./Restaurant')
 const {Menu} = require('./Menu')
 const {MenuItem} = require('./MenuItem')
+const {Rating} = require('./Rating')
 
 const app = express()
 const port = 3000
@@ -23,7 +24,7 @@ app.use(express.json())
 
 // root restaurants page
 app.get('/', async (req, res) => {
-    const restaurants = await Restaurant.findAll({
+    const restaurants = await Restaurant.findAll({ // grab all restaurant records
         include: [
             {
                 model: Menu, as: 'menus',
@@ -44,7 +45,18 @@ app.get('/restaurants/:id', async (req, res) => {
         include: [{model: MenuItem, as: 'items'}],
         nest: true
     })
-    res.render('restaurant', {restaurant, menus})
+
+    // add rating grab and calculation
+    const rating = await Rating.findOne({
+        where: {restaurant_id: req.params.id}
+    }).then(rating => {
+        console.log(rating.stars)
+        return rating
+    }).catch(err => {
+        console.log(err)
+    })
+
+    res.render('restaurant', {restaurant, menus})    
 })
 
 
@@ -73,7 +85,7 @@ app.post('/restaurants', async (req, res) => {
 // serve edit page
 app.get('/restaurants/:id/edit', async (req, res) => {
     Restaurant.findByPk(req.params.id).then(restaurant => {
-        res.render('edit', {restaurant})
+        res.render('edit', { restaurant })
     })
 })
 
@@ -92,6 +104,19 @@ app.get('/restaurants/:id/delete', async (req, res) => {
         res.redirect('/')
     })
 })  
+
+// serve rating page
+app.get('/restaurants/:id/rating', async (req, res) => {
+    await Restaurant.findByPk(req.params.id).then(restaurant => {
+        res.render('rating', { restaurant })
+    })
+})
+
+// handle rating submission
+app.post('/restaurants/:id/rating', async (req, res) => {
+    Rating.create({stars: req.body.rating, restaurant_id: req.params.id})
+    res.redirect(`/restaurants/${req.params.id}`)
+})
 
 // listen on port 3000
 app.listen(port, () => {
