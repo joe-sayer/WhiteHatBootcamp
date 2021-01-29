@@ -47,16 +47,19 @@ app.get('/restaurants/:id', async (req, res) => {
     })
 
     // add rating grab and calculation
-    const rating = await Rating.findOne({
-        where: {restaurant_id: req.params.id}
-    }).then(rating => {
-        console.log(rating.stars)
-        return rating
-    }).catch(err => {
+    const rating = await Rating.findAll({ // grab rating
+        where: {restaurant_id: req.params.id} // where restaurant_id is equal to given id in url (params)
+    }).then(rating => { // promise resolve
+        let reducedRating = 0;
+        for(let i = 0; i < rating.length; i++) {
+            reducedRating += rating[i].stars
+        }
+        return reducedRating / rating.length// maybe return calculation here?
+    }).catch(err => { // catch error - most likely because there are no current ratings in db
         console.log(err)
     })
 
-    res.render('restaurant', {restaurant, menus})    
+    res.render('restaurant', {restaurant, menus, rating})    
 })
 
 
@@ -71,6 +74,7 @@ app.get('/about', (req, res) => {
     })
 })
 
+// serve new page
 app.get('/new', (req, res) => {
     res.render('new')
 })
