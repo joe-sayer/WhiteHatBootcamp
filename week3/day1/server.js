@@ -82,7 +82,7 @@ app.get('/new', (req, res) => {
 // create new restaurant from new restaurant page
 app.post('/restaurants', async (req, res) => {
     console.log(req.body)
-    Restaurant.create(req.body)
+    await Restaurant.create(req.body)
     res.redirect('/')
 })
 
