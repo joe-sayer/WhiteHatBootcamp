@@ -52,9 +52,9 @@ app.get('/restaurants/:id', async (req, res) => {
     }).then(rating => { // promise resolve
         let reducedRating = 0;
         for(let i = 0; i < rating.length; i++) {
-            reducedRating += rating[i].stars
+            reducedRating += rating[i].stars // add ratings together
         }
-        return reducedRating / rating.length// maybe return calculation here?
+        return reducedRating / rating.length // return average
     }).catch(err => { // catch error - most likely because there are no current ratings in db
         console.log(err)
     })
