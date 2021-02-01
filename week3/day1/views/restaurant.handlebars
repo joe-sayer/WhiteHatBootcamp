@@ -15,6 +15,10 @@
         max-width: 100%;
     }
 
+    span {
+        display: block;
+    }
+
     .container {
         margin: 0 auto;
         width: 800px;
@@ -38,6 +42,7 @@
     <a href="/restaurants/{{this.restaurant.id}}/edit"><strong>Edit</strong> this restaurant</a>
     <a href="/restaurants/{{this.restaurant.id}}/delete"><strong>Delete</strong> this restaurant</a>
     <a href="/restaurants/{{this.restaurant.id}}/rating"><strong>Leave a rating</a>
+    <span id="counter"></span>
     <img src="{{this.restaurant.image}}" alt="{{this.restaurant.name}}">
     {{#each this.menus}}
         <h2>{{this.title}}</h2>
@@ -48,3 +53,15 @@
         </ul>
     {{/each}}
 </div>
+
+<script>
+    var n = localStorage.getItem('on_load_counter');
+
+    if (n === null) {
+        n = 0;
+    }
+    n++;
+
+    localStorage.setItem("on_load_counter", n);
+    document.querySelector('#counter').innerText = `Visits to this page: ${localStorage.getItem('on_load_counter')}`
+</script>
